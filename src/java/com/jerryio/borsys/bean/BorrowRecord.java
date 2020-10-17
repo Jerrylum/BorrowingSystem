@@ -2,6 +2,7 @@ package com.jerryio.borsys.bean;
 
 import java.util.ArrayList;
 
+import com.jerryio.borsys.db.UserDB;
 import com.jerryio.borsys.enums.RequestStatus;
 import java.io.Serializable;
 
@@ -39,8 +40,7 @@ public class BorrowRecord implements Serializable  {
     }
 
     public User getUser() {
-        // TODO
-        return null;
+        return UserDB.getUser(userId);
     }
 
     public void setUser(User u) {
