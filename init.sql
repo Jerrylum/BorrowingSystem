@@ -14,7 +14,7 @@ CREATE TABLE TheUser (
 );
 
 CREATE TABLE BorrowRecord (
-  bor_id integer PRIMARY KEY,
+  bor_id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   user_id integer NOT NULL,
   status varchar(32) NOT NULL
 );
@@ -23,8 +23,8 @@ CREATE TABLE BorrowItem (
   bor_id integer,
   eq_id integer,
   status varchar(32) NOT NULL,
-  dfrom char(10) NOT NULL,
-  dto char(10) NOT NULL,
+  dfrom varchar(10) NOT NULL,
+  dto varchar(10) NOT NULL,
   PRIMARY KEY (bor_id, eq_id)
 );
 

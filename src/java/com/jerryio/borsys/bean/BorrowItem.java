@@ -12,7 +12,7 @@ public class BorrowItem implements Serializable  {
      */
     private static final long serialVersionUID = 3769548742220540094L;
 
-    private int id;
+    private int recordId;
     private int equipmentId;
     private BorrowType status;
     private Date from;
@@ -22,12 +22,20 @@ public class BorrowItem implements Serializable  {
         
     }
 
-    public int getId() {
-        return this.id;
+    public int getRecordId() {
+        return this.recordId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
+    }
+
+    public BorrowRecord getRecord() {
+        return ObjectDBFactory.getBorrowRecordDB().getBorrowRecord(recordId);
+    }
+
+    public void setRecord(BorrowRecord r) {
+        this.recordId = r.getId();
     }
 
     public int getEquipmentId() {

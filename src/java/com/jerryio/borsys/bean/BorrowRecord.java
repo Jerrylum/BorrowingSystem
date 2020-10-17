@@ -17,10 +17,9 @@ public class BorrowRecord implements Serializable  {
     private int userId;
     private RequestStatus status;
 
-    private ArrayList<BorrowItem> items; // = new ArrayList<BorrowItem>();
+    // private ArrayList<BorrowItem> items; // = new ArrayList<BorrowItem>();
 
     public BorrowRecord() {
-        // TODO
         // items = 
     }
 
@@ -57,6 +56,6 @@ public class BorrowRecord implements Serializable  {
     }
 
     public ArrayList<BorrowItem> getItemList() {
-        return this.items;
+        return ObjectDBFactory.getBorrowItemDB().getBorrowItemsList(getId());
     }
 }
