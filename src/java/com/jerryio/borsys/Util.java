@@ -10,8 +10,13 @@ public class Util {
     private static final String username = "dbroot";
     private static final String password = "KiEoF4Gt4mJmWkjqqyGnNb2rYjzLMA";
 
+    private static Connection conn = null;
+
     public static Connection getConnection() throws SQLException, IOException {
         System.setProperty("jdbc.drivers", "org.apache.derby.jdbc.ClientDriver");
-        return DriverManager.getConnection(url, username, password);
+        if (conn == null || !conn.isValid(100) || conn.isClosed())
+            return (conn = DriverManager.getConnection(url, username, password));
+        else
+            return conn;
     }
 }
