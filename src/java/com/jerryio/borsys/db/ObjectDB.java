@@ -1,12 +1,17 @@
 package com.jerryio.borsys.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import com.jerryio.borsys.Util;
 
 public abstract class ObjectDB {
-    
     protected Connection cnnct = null;
+    
+    protected PreparedStatement selectStmnt;
+    protected PreparedStatement insertStmnt;
+    protected PreparedStatement updateStmnt;
+    protected PreparedStatement deleteStmnt;
 
     public ObjectDB() {
         try {
@@ -17,10 +22,10 @@ public abstract class ObjectDB {
 
     }
 
-    @Override
-    public void finalize() throws Throwable {        
-        if (cnnct != null)
-            cnnct.close();
-    }
+    // @Override
+    // public void finalize() throws Throwable {        
+    //     if (cnnct != null)
+    //         cnnct.close();
+    // }
 
 }

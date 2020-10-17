@@ -10,11 +10,6 @@ public class UserDB extends ObjectDB {
     private static ArrayList<User> allList = null;
     private static boolean isChanged = true;
 
-    private PreparedStatement selectStmnt;
-    private PreparedStatement insertStmnt;
-    private PreparedStatement updateStmnt;
-    private PreparedStatement deleteStmnt;
-
     public UserDB() {
         try {
             selectStmnt = cnnct.prepareStatement("SELECT * FROM TheUser");

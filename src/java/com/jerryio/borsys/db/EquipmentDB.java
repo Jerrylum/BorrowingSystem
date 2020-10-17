@@ -11,11 +11,6 @@ public class EquipmentDB extends ObjectDB {
     private static ArrayList<Equipment> allList = null;
     private static boolean isChanged = true;
 
-    private PreparedStatement selectStmnt;
-    private PreparedStatement insertStmnt;
-    private PreparedStatement updateStmnt;
-    private PreparedStatement deleteStmnt;
-
     public EquipmentDB() {
         try {
             selectStmnt = cnnct.prepareStatement("SELECT * FROM Equipment");
