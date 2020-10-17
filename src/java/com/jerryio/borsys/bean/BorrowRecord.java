@@ -2,8 +2,9 @@ package com.jerryio.borsys.bean;
 
 import java.util.ArrayList;
 
-import com.jerryio.borsys.db.UserDB;
 import com.jerryio.borsys.enums.RequestStatus;
+import com.jerryio.borsys.factory.ObjectDBFactory;
+
 import java.io.Serializable;
 
 public class BorrowRecord implements Serializable  {
@@ -40,7 +41,7 @@ public class BorrowRecord implements Serializable  {
     }
 
     public User getUser() {
-        return UserDB.getUser(userId);
+        return ObjectDBFactory.getUserDB().getUser(userId);
     }
 
     public void setUser(User u) {

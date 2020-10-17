@@ -6,25 +6,28 @@ import com.jerryio.borsys.bean.Equipment;
 import com.jerryio.borsys.db.EquipmentDB;
 import com.jerryio.borsys.enums.AvailabilityStatus;
 import com.jerryio.borsys.enums.ListingStatus;
+import com.jerryio.borsys.factory.ObjectDBFactory;
 
 public class EquiTest {
+    public static EquipmentDB db = ObjectDBFactory.getEquipmentDB();
+
     public static void main(String[] args) {
-        Equipment e = EquipmentDB.add("iPhone", "", AvailabilityStatus.FREE, ListingStatus.ENABLE);
+        Equipment e = db.add("iPhone", "", AvailabilityStatus.FREE, ListingStatus.ENABLE);
 
         showAll();
         
         e.setStatus(AvailabilityStatus.USED);
-        EquipmentDB.update(e);
+        db.update(e);
 
         showAll();
 
-        EquipmentDB.delete(e);
+        db.delete(e);
 
         showAll();
     }
 
     public static void showAll() {
-        ArrayList<Equipment> list = EquipmentDB.getAllEquipments();
+        ArrayList<Equipment> list = db.getAllEquipments();
 
         System.out.println("Size: " + list.size());
 

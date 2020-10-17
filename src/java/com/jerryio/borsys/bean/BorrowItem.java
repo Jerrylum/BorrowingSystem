@@ -2,7 +2,7 @@ package com.jerryio.borsys.bean;
 
 import java.util.Date;
 
-import com.jerryio.borsys.db.EquipmentDB;
+import com.jerryio.borsys.factory.ObjectDBFactory;
 import com.jerryio.borsys.enums.BorrowType;
 import java.io.Serializable;
 
@@ -39,7 +39,7 @@ public class BorrowItem implements Serializable  {
     }
 
     public Equipment getEquipment() {
-        return EquipmentDB.getEquipment(equipmentId);
+        return ObjectDBFactory.getEquipmentDB().getEquipment(equipmentId);
     }
 
     public void setEquipment(Equipment e) {
