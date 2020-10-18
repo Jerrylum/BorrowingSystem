@@ -5,7 +5,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.jerryio.borsys.bean.BorrowRecord;
-import com.jerryio.borsys.enums.BorrowType;
 import com.jerryio.borsys.enums.RequestStatus;
 
 public class BorrowRecordDB extends ObjectDB {
