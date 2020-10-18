@@ -8,6 +8,7 @@ package com.jerryio.borsys.servlet;
 import com.jerryio.borsys.Util;
 import com.jerryio.borsys.bean.User;
 import com.jerryio.borsys.db.UserDB;
+import com.jerryio.borsys.enums.RoleType;
 import com.jerryio.borsys.factory.ObjectDBFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,6 +49,9 @@ public class UserController extends HttpServlet {
             if ("logout".equals(action)) {
                 doLogout(request, response);
                 return;
+            } else if ("add".equals(action)) {
+                doAddUser(request, response);
+                return;
             }
         }
         
@@ -87,6 +91,18 @@ public class UserController extends HttpServlet {
         }
         
         Util.forward(getServletContext(), request, response, "/index.jsp");
+    }
+    
+    private void doAddUser(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String pwd = request.getParameter("pwd");
+        RoleType role = RoleType.valueOf(request.getParameter("role"));
+        
+        UserDB db = ObjectDBFactory.getUserDB();
+        
+        db.add(name, pwd, role);
+        
+        Util.redirect(request, response, "/account.jsp");
     }
 
 
