@@ -44,7 +44,7 @@ public class BorrowItemDB extends ObjectDB {
     
     public ArrayList<BorrowItem> queryAll() {
         allList = new ArrayList<BorrowItem>();
-        DateFormat df = DateFormat.getDateInstance();
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             
@@ -58,10 +58,10 @@ public class BorrowItemDB extends ObjectDB {
                 bi.setStatus(BorrowType.valueOf(rs.getString("status")));
 
                 String dfrom = rs.getString("dfrom");
-                bi.setFrom(dfrom.equals("") ? null : df.parse(dfrom + " 00:00:00"));
+                bi.setFrom(dfrom.equals("") ? null : sdf.parse(dfrom + " 00:00:00"));
 
                 String dto = rs.getString("dto");
-                bi.setTo(dto.equals("") ? null : df.parse(dto + " 23:59:59"));
+                bi.setTo(dto.equals("") ? null : sdf.parse(dto + " 23:59:59"));
                 
                 allList.add(bi);
             }

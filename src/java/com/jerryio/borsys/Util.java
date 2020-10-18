@@ -14,9 +14,16 @@ public class Util {
 
     public static Connection getConnection() throws SQLException, IOException {
         System.setProperty("jdbc.drivers", "org.apache.derby.jdbc.ClientDriver");
-        if (conn == null || !conn.isValid(100) || conn.isClosed())
+
+        if (conn == null || !conn.isValid(50) || conn.isClosed()) { // isValid performance bad
+            debug("Util: Create connection");
             return (conn = DriverManager.getConnection(url, username, password));
-        else
+        } else {
             return conn;
+        }
+    }
+
+    public static void debug(String str) {
+        System.out.println("Debug: " + str);
     }
 }
