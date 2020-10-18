@@ -1,4 +1,4 @@
-package com.jerryio.borsys.init;
+package com.jerryio.borsys.script;
 
 import java.io.File;
 import java.sql.*;
