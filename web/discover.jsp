@@ -1,4 +1,11 @@
+<%@page import="com.jerryio.borsys.db.EquipmentDB"%>
+<%@page import="com.jerryio.borsys.enums.AvailabilityStatus"%>
+<%@page import="com.jerryio.borsys.enums.ListingStatus"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.jerryio.borsys.bean.Equipment"%>
+<%@page import="com.jerryio.borsys.factory.ObjectDBFactory"%>
 <%@include file="WEB-INF/auth-check.jsp"%>
+<%@taglib uri="/WEB-INF/tlds/a_tag_lib.tld" prefix="borsys" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,15 +17,74 @@
 
     <body class="d-flex flex-column h-100">
         <%@include file="WEB-INF/header.jsp" %>
-        
+
+        <%  EquipmentDB db = ObjectDBFactory.getEquipmentDB();
+
+            if (session.getAttribute("cart") == null) {
+                session.setAttribute("cart", new ArrayList<Equipment>());
+            }
+
+            ArrayList<Equipment> cart = (ArrayList<Equipment>) session.getAttribute("cart");
+
+            String action = request.getParameter("action");
+
+            if (action != null) {
+                String id = request.getParameter("id");
+                Equipment e = db.getEquipment(Integer.parseInt(id));
+                
+                if (e != null)         
+                    if ("add".equals(action)) {
+                        if (cart.contains(e) == false) cart.add(e);
+                    } else {
+                        cart.remove(e);                        
+                    }
+                        
+            }
+                
+        %>
 
         <!-- Begin page content -->
         <main role="main" class="flex-shrink-0">
             <div class="container">
-                <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-                <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>main &gt; .container</code>.</p>
-                <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
-                <p><%= request.getRequestURI() %></p>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="mt-5">Discover</h3>
+
+                        <h3 class="lead mt-5 mb-3">View / Edit</h3>
+                        <div style="max-width: 500px">
+                            <%  for (Equipment e : db.getAllEquipments()) {
+                                    if (e.getStatus() == AvailabilityStatus.FREE && e.getListing() == ListingStatus.ENABLE)
+                            %>
+                            <borsys:equipment-box equipment="<%= e %>" isStudent="true" canAddToCart="<%= !cart.contains(e)%>"/>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 class="mt-5">Order List</h3>
+                        <%
+                            if (cart.size() == 0) {
+                                out.print("<p class=\"head\">Empty</p>");
+                            } else {
+                                for (Equipment e : cart) {
+                                    if (e.getStatus() == AvailabilityStatus.FREE && e.getListing() == ListingStatus.ENABLE) {
+                                        out.print("<div class=\"card mb-3 shadow-sm\">"
+                                                + "    <div class=\"card-body\">"
+                                                + "        <p class=\"lead\">" + e.getName() + " (ID: " + e.getId() + ")</p>"
+                                                + "        <form style=\"display: inline\" action=\"discover.jsp\" method=\"POST\">"
+                                                + "            <input type=\"hidden\" name=\"action\" value=\"remove\" />"
+                                                + "            <input type=\"hidden\" name=\"id\" value=\"" + e.getId() + "\" />"
+                                                + "            <button class=\"btn btn-danger btn-inline btn-sm\" type=\"submit\">Remove</button>"
+                                                + "        </form>"
+                                                + "    </div>"
+                                                + "</div>");
+                                    }
+                                }
+                                out.print("<a class=\"btn btn-primary btn-inline btn-sm\" href=\"BorrowRecordController?action=checkout\">Checkout Order</a>");
+                            }
+                            %>
+                    </div>
+                </div>
+
             </div>
         </main>
     </body>

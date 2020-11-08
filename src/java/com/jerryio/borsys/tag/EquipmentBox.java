@@ -19,6 +19,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class EquipmentBox extends SimpleTagSupport {
     
     private boolean isStudent;
+    private boolean canAddToCart = false;
     private Equipment equipment;
 
     public Equipment getEquipment() {
@@ -37,6 +38,14 @@ public class EquipmentBox extends SimpleTagSupport {
         this.isStudent = isStudent;
     }
     
+    public boolean getCanAddToCart() {
+        return canAddToCart;
+    }
+
+    public void setCanAddToCart(boolean canAddToCart) {
+        this.canAddToCart = canAddToCart;
+    }
+    
     public void doTag() {
         try {
             PageContext pageContext = (PageContext) getJspContext();
@@ -48,26 +57,38 @@ public class EquipmentBox extends SimpleTagSupport {
                 "<div class=\"card mb-3 shadow-sm\">" +
                 "    <div class=\"card-body\">" +
                     (getIsStudent() ?
+                        "<p class=\"lead\">" + eq.getName()+ " (ID: " + eq.getId() + ")</p>" +
+                        "<p class=\"md-1\">" + eq.getDescription()+ "</p>" +
+                        "<form action=\"discover.jsp\" method=\"POST\">" +
+                        "    <input type=\"hidden\" name=\"action\" value=\"add\" />" +
+                        "    <input type=\"hidden\" name=\"id\" value=\"" + eq.getId() + "\" />" +
+                        "    <button class=\"btn " + (
+                            getCanAddToCart() ? "btn-primary" : "btn-dark"
+                        ) + " btn-inline btn-sm\" type=\"submit\"" + (
+                            getCanAddToCart() ? "" : "disabled title=\"Added\""
+                        ) + ">Add to cart</button>" +
+                        "</form>"
+                        : 
                         "<p>ID: " + eq.getId() + "</p>" +
                         "<form style=\"display: inline\" action=\"EquipmentController\" method=\"POST\">" +
                         "    <input type=\"hidden\" name=\"action\" value=\"update\" />" +
                         "    <input type=\"hidden\" name=\"id\" value=\"" + eq.getId() + "\" />" +
                         "    <input type=\"text\" name=\"name\" class=\"form-control form-control-sm mb-2\" placeholder=\"Name\" value=\"" + eq.getName()+ "\" required/>" +
-                        "    <textarea type=\"text\" name=\"description\" class=\"form-control form-control-sm mb-2\" placeholder=\"Description\" required>" + eq.getDescription() + "</textarea>" +
+                        "    <textarea name=\"description\" class=\"form-control form-control-sm mb-2\" placeholder=\"Description\" required>" + eq.getDescription() + "</textarea>" +
                         "    Status: " + eq.getStatus() + "<br/>" +
-                        "    <input type=\"checkbox\" name=\"listing\" class=\"form-control form-control-sm mb-2\" " +
-                        "           value=\"true\"" + (eq.getListing() == ListingStatus.ENABLE ? "checked" : "") + "/>" +
-                        "    <label for=\"listing\"> Listing</label><br>" +
+                        "    <div class=\"form-check\">" +
+                        "        <input type=\"checkbox\" name=\"listing\" class=\"form-check-input\" " +
+                        "               value=\"true\"" + (eq.getListing() == ListingStatus.ENABLE ? "checked" : "") + "/>" +
+                        "        <label class=\"form-check-label\" for=\"listing\"> Listing</label><br>" +
+                        "    </div>" +
                         "    <br/>" +
                         "    <button class=\"btn btn-primary btn-inline btn-sm\" type=\"submit\">Update</button>" +
                         "</form>" + 
-                        "<form style=\"display: inline\" action=\"UserController\" method=\"POST\">" +
+                        "<form style=\"display: inline\" action=\"EquipmentController\" method=\"POST\">" +
                         "    <input type=\"hidden\" name=\"action\" value=\"delete\" />" +
                         "    <input type=\"hidden\" name=\"id\" value=\"" + eq.getId() + "\" />" +
                         "    <button class=\"btn btn-danger btn-inline btn-sm\" type=\"submit\">Delete</button>" +
                         "</form>"
-                        : 
-                        eq.getId()
                     ) +
                 "    </div>" +
                 "</div>");

@@ -59,4 +59,11 @@ public class Equipment implements Serializable  {
     public void setListing(ListingStatus listing) {
         this.listing = listing;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Equipment ? this.getId() == ((Equipment)obj).getId() : false;
+    }
+    
+    
 }

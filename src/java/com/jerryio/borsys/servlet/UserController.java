@@ -100,8 +100,9 @@ public class UserController extends HttpServlet {
         if ("".equals(pwd) == false)
             u.setPwd(pwd);
         u.setRole(RoleType.valueOf(type));
-        db.update(u);
 
+        request.setAttribute("error", db.update(u));
+        
         Util.forward(getServletContext(), request, response, "/account.jsp");
     }
     
