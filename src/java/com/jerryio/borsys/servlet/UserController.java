@@ -52,6 +52,12 @@ public class UserController extends HttpServlet {
             } else if ("add".equals(action)) {
                 doAddUser(request, response);
                 return;
+            } else if ("update".equals(action)) {
+                doUpdateAcc(request, response);
+                return;
+            } else if ("delete".equals(action)) {
+                doDeleteAcc(request, response);
+                return;
             }
         }
         
@@ -81,6 +87,34 @@ public class UserController extends HttpServlet {
         request.setAttribute("error", true);
         Util.forward(getServletContext(), request, response, "/login.jsp");
     }
+
+    private void doUpdateAcc(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String pwd = request.getParameter("pwd");
+        String type = request.getParameter("type");
+        
+        UserDB db = ObjectDBFactory.getUserDB();
+        User u = db.getUser(Integer.parseInt(id));
+        u.setName(name);
+        if ("".equals(pwd) == false)
+            u.setPwd(pwd);
+        u.setRole(RoleType.valueOf(type));
+        db.update(u);
+
+        Util.forward(getServletContext(), request, response, "/account.jsp");
+    }
+    
+    private void doDeleteAcc(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        
+        UserDB db = ObjectDBFactory.getUserDB();
+
+        request.setAttribute("error", db.delete(Integer.parseInt(id)));
+
+        Util.forward(getServletContext(), request, response, "/account.jsp");
+    }
+
     
     private void doLogout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
