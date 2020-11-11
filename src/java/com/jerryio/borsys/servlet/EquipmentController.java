@@ -38,6 +38,12 @@ public class EquipmentController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if (Util.getMe(request) == null) {
+            Util.redirect(request, response, "/login.jsp");
+            return;
+        }
+        
         String action = request.getParameter("action");
 
         if ("add".equals(action)) {

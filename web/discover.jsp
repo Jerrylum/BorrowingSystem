@@ -28,7 +28,10 @@
 
             String action = request.getParameter("action");
 
-            if (action != null) {
+            
+            if ("clear".equals(action))
+                cart.clear();
+            else if (action != null) {
                 String id = request.getParameter("id");
                 Equipment e = db.getEquipment(Integer.parseInt(id));
                 
@@ -53,10 +56,11 @@
                         <h3 class="lead mt-5 mb-3">View / Edit</h3>
                         <div style="max-width: 500px">
                             <%  for (Equipment e : db.getAllEquipments()) {
-                                    if (e.getStatus() == AvailabilityStatus.FREE && e.getListing() == ListingStatus.ENABLE)
+                                    if (e.getStatus() == AvailabilityStatus.FREE && e.getListing() == ListingStatus.ENABLE){
                             %>
                             <borsys:equipment-box equipment="<%= e %>" isStudent="true" canAddToCart="<%= !cart.contains(e)%>"/>
-                            <% } %>
+                            <%      }
+                                } %>
                         </div>
                     </div>
                     <div class="col">
@@ -79,7 +83,8 @@
                                                 + "</div>");
                                     }
                                 }
-                                out.print("<a class=\"btn btn-primary btn-inline btn-sm\" href=\"BorrowRecordController?action=checkout\">Checkout Order</a>");
+                                out.print("<a class=\"btn btn-primary btn-inline btn-sm\" href=\"BorrowRecordController?action=checkout\">Checkout Order</a> ");
+                                out.print("<a class=\"btn btn-danger btn-inline btn-sm\" href=\"discover.jsp?action=clear\">Remove All</a>");
                             }
                             %>
                     </div>
