@@ -55,4 +55,21 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>borrowrecord-box</name>
+        <tag-class>com.jerryio.borsys.tag.BorrowRecordBox</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>record</name>
+            <required>true</required>
+            <type>com.jerryio.borsys.bean.BorrowRecord</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>isStudent</name>
+            <required>true</required>
+            <type>boolean</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>
