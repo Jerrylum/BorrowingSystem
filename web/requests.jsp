@@ -1,3 +1,4 @@
+<%@page import="com.jerryio.borsys.Util"%>
 <%@page import="com.jerryio.borsys.bean.BorrowRecord"%>
 <%@page import="com.jerryio.borsys.db.EquipmentDB"%>
 <%@page import="com.jerryio.borsys.enums.AvailabilityStatus"%>
@@ -13,7 +14,7 @@
 <html>
     <head>
         <%@include file="WEB-INF/basic.jsp" %>
-        <title>Records</title>
+        <title>Requests</title>
     </head>
 
     <body class="d-flex flex-column h-100">
@@ -30,11 +31,9 @@
                         ArrayList<BorrowRecord> list = (ArrayList<BorrowRecord>)ObjectDBFactory.getBorrowRecordDB().getAllBorrowRecords();
                         
                         for (BorrowRecord r : Util.reverseList(list)) { 
-                            if (r.getUserId() == me.getId()) {
                     %>
-                               <borsys:borrowrecord-box record="<%= r %>" isStudent="true"/>
-                    <%      }
-                        } %>
+                            <borsys:borrowrecord-box record="<%= r %>" isStudent="false"/>
+                    <%  } %>
                     
                 </div>
             </div>

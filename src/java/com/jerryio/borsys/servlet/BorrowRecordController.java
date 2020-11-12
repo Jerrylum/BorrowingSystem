@@ -142,11 +142,6 @@ public class BorrowRecordController extends HttpServlet {
             else
                 Util.forward(getServletContext(), request, response, "/records.jsp");
         }
-        
-        
-        
-        
-
     }
 
 
