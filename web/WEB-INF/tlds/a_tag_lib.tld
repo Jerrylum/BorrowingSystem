@@ -72,4 +72,15 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>borrowitem-box</name>
+        <tag-class>com.jerryio.borsys.tag.BorrowItemBox</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>item</name>
+            <required>true</required>
+            <type>com.jerryio.borsys.bean.BorrowItem</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

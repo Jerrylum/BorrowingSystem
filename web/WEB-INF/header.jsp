@@ -53,6 +53,7 @@
                         out.print(
                             helper.link("Inventory", "inventory.jsp") +
                             helper.link("Requests", "requests.jsp") +
+                            helper.link("Overdue", "overdue.jsp") +
                             helper.link("Statistic", "statistic.jsp") +
                             helper.link("Recent", "recent.jsp") +
                             helper.link("Account", "account.jsp")

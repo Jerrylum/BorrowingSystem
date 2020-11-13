@@ -146,12 +146,13 @@ public class BorrowRecordController extends HttpServlet {
                 conn.setAutoCommit(true);
             } catch (Exception ex2) {}            
         } finally {
-            request.setAttribute("error", error);
+//            request.setAttribute("error", error);
             
             if (error)
                 Util.redirect(request, response, "/discover.jsp");
             else
-                Util.forward(getServletContext(), request, response, "/records.jsp");
+//                Util.forward(getServletContext(), request, response, "/records.jsp");
+                Util.redirect(request, response, "/records.jsp");
         }
     }
     
