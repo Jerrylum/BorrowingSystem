@@ -77,5 +77,9 @@ public class BorrowItem implements Serializable  {
     public void setTo(Date to) {
         this.to = to;
     }
+    
+    public boolean isOverdue() {
+        return this.getStatus() == BorrowType.USING && (new Date().getTime() - this.getTo().getTime()) > 86400000;
+    }
 
 }

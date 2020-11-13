@@ -56,7 +56,7 @@
                         <h3 class="lead mt-5 mb-3">View / Edit</h3>
                         <div style="max-width: 500px">
                             <%  for (Equipment e : db.getAllEquipments()) {
-                                    if (e.getStatus() == AvailabilityStatus.FREE && e.getListing() == ListingStatus.ENABLE){
+                                    if (e.getListing() == ListingStatus.ENABLE){
                             %>
                             <borsys:equipment-box equipment="<%= e %>" isStudent="true" canAddToCart="<%= !cart.contains(e)%>"/>
                             <%      }

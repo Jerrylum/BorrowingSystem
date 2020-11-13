@@ -159,14 +159,14 @@ public class BorrowRecordBox extends SimpleTagSupport {
                         + "</form>"
                      + "</div>";
             } else if (item.getStatus() == BorrowType.USING) {                
-                String dueColor = (now.getTime() - item.getTo().getTime()) > 86400000 ? "text-danager" : "";
+                String dueColor = item.isOverdue() ? "text-danger" : "";
             
                 buf += "<div class=\"row\">"
                         + "<div class=\"col-sm-6\" title=\"item id: " + item.getEquipmentId() + "\">" 
                         + item.getEquipment().getName() + "</div>"
                         + "<a class=\"col-sm-3 text-primary\" "
                         + "   href=\"BorrowRecordController?action=item2return&record=" + item.getRecordId() + "&eq=" + item.getEquipmentId() + "\">> Returned</a>"
-                        + "<div class=\"col-sm-3\" " + dueColor + " title=\"from " + 
+                        + "<div class=\"col-sm-3 " + dueColor + "\" title=\"from " + 
                             sdf.format(item.getFrom()) + " to " +
                             sdf.format(item.getTo()) + "\">" +
                             sdf.format(item.getTo()) + "</div>"

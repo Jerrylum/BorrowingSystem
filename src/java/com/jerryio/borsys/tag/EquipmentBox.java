@@ -6,6 +6,7 @@
 package com.jerryio.borsys.tag;
 
 import com.jerryio.borsys.bean.Equipment;
+import com.jerryio.borsys.enums.AvailabilityStatus;
 import com.jerryio.borsys.enums.ListingStatus;
 import java.io.IOException;
 import javax.servlet.jsp.JspWriter;
@@ -52,21 +53,23 @@ public class EquipmentBox extends SimpleTagSupport {
             JspWriter out = pageContext.getOut();
             
             Equipment eq = getEquipment();
+            boolean canAdd = getCanAddToCart() && eq.getStatus() == AvailabilityStatus.FREE;
             
             out.print(
                 "<div class=\"card mb-3 shadow-sm\">" +
                 "    <div class=\"card-body\">" +
                     (getIsStudent() ?
-                        "<p class=\"lead\">" + eq.getName()+ " (ID: " + eq.getId() + ")</p>" +
+                        "<p class=\"lead\">" + eq.getName()+ " <span class=\"text-muted\">(ID: " + eq.getId() + ")</span></p>" +
                         "<p class=\"md-1\">" + eq.getDescription()+ "</p>" +
                         "<form action=\"discover.jsp\" method=\"POST\">" +
                         "    <input type=\"hidden\" name=\"action\" value=\"add\" />" +
                         "    <input type=\"hidden\" name=\"id\" value=\"" + eq.getId() + "\" />" +
                         "    <button class=\"btn " + (
-                            getCanAddToCart() ? "btn-primary" : "btn-dark"
+                            canAdd ? "btn-primary" : "btn-dark"
                         ) + " btn-inline btn-sm\" type=\"submit\"" + (
-                            getCanAddToCart() ? "" : "disabled title=\"Added\""
-                        ) + ">Add to cart</button>" +
+                            canAdd ? "" : "disabled title=\"Added\""
+                        ) + ">Add to cart</button> " +
+                        (eq.getStatus() == AvailabilityStatus.USED ? "<span class=\"top-right\">USED</span>" : "") +
                         "</form>"
                         : 
                         "<p>ID: " + eq.getId() + "</p>" +

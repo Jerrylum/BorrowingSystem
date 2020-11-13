@@ -39,6 +39,8 @@ public class BorrowItemBox extends SimpleTagSupport {
             Equipment eq = item.getEquipment();
             BorrowRecord record =  item.getRecord();
             
+            String dateColor = item.isOverdue() ? "text-danger" : "";
+            
             out.print("<div class=\"card mb-3 shadow-sm\">"
                 + "    <div class=\"card-body\">"
                 + "        <p>"
@@ -47,7 +49,7 @@ public class BorrowItemBox extends SimpleTagSupport {
                 + "        </p>"
                 + "        <span class=\"text-muted\">"
                         + "From " + sdf.format(item.getFrom()) + " "
-                        + "to " + sdf.format(item.getTo()) + "<br/>"
+                        + "to <span class=\"" + dateColor + "\">" + sdf.format(item.getTo()) + "</span><br/>"
                         + "Record ID: " + record.getId() + " by " + record.getUser().getName()
                 + "        </span>"
                 + "    </div>"

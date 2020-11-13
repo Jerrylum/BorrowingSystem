@@ -50,7 +50,7 @@
                         boolean isEmpty = true;
                         
                         for (BorrowItem item : list) {
-                            if (item.getStatus() == BorrowType.USING && (now.getTime() - item.getTo().getTime()) > 86400000) {
+                            if (item.isOverdue()) {
                             %>
                                 <borsys:borrowitem-box item="<%= item %>"/>
                         <%
