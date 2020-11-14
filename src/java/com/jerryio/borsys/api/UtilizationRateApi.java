@@ -59,6 +59,8 @@ public class UtilizationRateApi extends HttpServlet {
             HashMap<Integer, Integer> result = new HashMap<Integer, Integer>();
             ArrayList<BorrowItem> items = ObjectDBFactory.getBorrowItemDB().getAllBorrowItems();
             
+            ////////////////////////////////////////////////
+            
             for (BorrowItem item : items) {
                 boolean ok =
                         (                        

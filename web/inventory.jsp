@@ -22,7 +22,7 @@
                 <h2 class="mt-5">Inventory</h2>
                 <%
                 for (BorrowItem item : ObjectDBFactory.getBorrowItemDB().getAllBorrowItems()) {
-                    if (item.getRecord().getUserId() == me.getId() && item.isOverdue()) {
+                    if (item.isOverdue()) {
                         out.print("<div class=\"alert alert-danger my-4\"  style=\"max-width: 500px\" role=\"alert\">Overdue loaned equipment</div>");
                         break;                                    
                     }

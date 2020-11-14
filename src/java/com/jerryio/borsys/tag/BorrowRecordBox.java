@@ -225,7 +225,9 @@ public class BorrowRecordBox extends SimpleTagSupport {
                 "<div class=\"card mb-3 shadow-sm\">" +
                 "    <div class=\"card-body\">" +
                 "        <p class=\"lead " + statusColor + " my-0\">" + status + "</p>" +
-                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " + re.getUser().getName() + "</p>" +
+                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " +
+                "            <span title=\"User ID: " + re.getUserId() + "\">" + re.getUser().getName() + "</span>" +
+                "        </p>" +
                 buf +
                 "        <br/>" +
                 "        <a class=\"btn btn-success btn-inline btn-sm\" " +
@@ -241,7 +243,9 @@ public class BorrowRecordBox extends SimpleTagSupport {
                 "<div class=\"card mb-3 shadow-sm\">" +
                 "    <div class=\"card-body\">" +
                 "        <p class=\"lead " + statusColor + " my-0\">" + status + "</p>" +
-                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " + re.getUser().getName() + "</p>" +
+                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " +
+                "            <span title=\"User ID: " + re.getUserId() + "\">" + re.getUser().getName() + "</span>" +
+                "        </p>" +
                 buf +
                 "    </div>" +
                 "</div>");
@@ -252,7 +256,9 @@ public class BorrowRecordBox extends SimpleTagSupport {
                 "<div class=\"card mb-3 shadow-sm\">" +
                 "    <div class=\"card-body\">" +
                 "        <p class=\"lead " + statusColor + " my-0\">" + status + "</p>" +
-                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " + re.getUser().getName() + "</p>" +
+                "        <p class=\"text-muted mt-0\">Record ID: " + re.getId() + " by " +
+                "            <span title=\"User ID: " + re.getUserId() + "\">" + re.getUser().getName() + "</span>" +
+                "        </p>" +
                 buf +
                 "    </div>" +
                 "</div>");
