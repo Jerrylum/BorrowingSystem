@@ -67,7 +67,10 @@ public class UserController extends HttpServlet {
     private void doLogin(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String pwd = request.getParameter("pwd");
+        String redirect = request.getParameter("redirect");
         
+        HttpSession s = request.getSession();
+        s.setAttribute("login-id", id);
         UserDB db = ObjectDBFactory.getUserDB();
         
         for (User u : db.getAllUsers()) {
@@ -76,16 +79,16 @@ public class UserController extends HttpServlet {
                     break;
                 }
 
-                HttpSession s = request.getSession();
                 s.setAttribute("me", u);
                 
-                Util.redirect(request, response, "/index.jsp");
+                s.setAttribute("login-error", null);
+                Util.redirect(request, response, "/.." + redirect);
                 return;
             }
         }
         
-        request.setAttribute("error", true);
-        Util.forward(getServletContext(), request, response, "/login.jsp");
+        s.setAttribute("login-error", true);
+        Util.redirect(request, response, "/.." + redirect);
     }
 
     private void doUpdateAcc(HttpServletRequest request, HttpServletResponse response) {

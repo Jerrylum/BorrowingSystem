@@ -3,8 +3,9 @@
 <%
 User me = (User)session.getAttribute("me");
 if (me == null) {
-    Util.redirect(request, response, "/login.jsp");
-    return;
+%>
+    <jsp:forward page="/login.jsp"/>
+<%
 }%>
 
 
