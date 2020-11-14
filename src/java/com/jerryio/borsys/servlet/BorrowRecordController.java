@@ -280,6 +280,8 @@ public class BorrowRecordController extends HttpServlet {
                 eq.setStatus(AvailabilityStatus.FREE);
 
                 db3.update(eq);
+                
+                item.setTo(new Date());
             }
             
             db2.update(item);

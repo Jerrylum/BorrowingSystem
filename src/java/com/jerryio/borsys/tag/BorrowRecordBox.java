@@ -176,8 +176,8 @@ public class BorrowRecordBox extends SimpleTagSupport {
                         + "<div class=\"col-sm-6\" title=\"item id: " + item.getEquipmentId() + "\">" 
                         + item.getEquipment().getName() + "</div>"
                         + "<div class=\"col-sm-3 text-muted\" " + item.getEquipmentId() + ">returned</div>"
-                        + "<div class=\"col-sm-3\" title=\"from " + 
-                            sdf.format(item.getFrom()) + " to " +
+                        + "<div class=\"col-sm-3\" title=\"gave on " + 
+                            sdf.format(item.getFrom()) + " returned on " +
                             sdf.format(item.getTo()) + "\">" +
                             sdf.format(item.getTo()) + "</div>"
                      + "</div>";
