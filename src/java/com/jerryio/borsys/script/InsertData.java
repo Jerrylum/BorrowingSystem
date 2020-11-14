@@ -73,39 +73,41 @@ public class InsertData {
         Equipment porkEq     = edb.add("iPhone X", "pork label", AvailabilityStatus.FREE, ListingStatus.ENABLE);
         Equipment fishEq     = edb.add("iPhone X", "fish label", AvailabilityStatus.FREE, ListingStatus.ENABLE);
 
-        ////////////////////////////////////////////////
+        ////////////////////////////////////////////////      
 
-        record(stdA, new Equipment[]{redEq, orangeEq, greenEq}, "2020-09-01");
-        record(stdB, new Equipment[]{whiteEq, dogEq, catEq}, "2020-09-01");
-        record(stdD, new Equipment[]{redEq, purpleEq}, "2020-09-02");
-        record(stdC, new Equipment[]{yellowEq, blueEq}, "2020-09-03");
-        record(stdE, new Equipment[]{purpleEq, greenEq}, "2020-09-03");
-        record(stdG, new Equipment[]{yellowEq, redEq}, "2020-09-04");
-        record(stdB, new Equipment[]{snakeEq, rabbitEq}, "2020-09-07");
-        record(stdA, new Equipment[]{redEq, beefEq}, "2020-09-08");
-        record(stdF, new Equipment[]{porkEq, fishEq}, "2020-09-09");
-        record(stdB, new Equipment[]{greenEq}, "2020-09-09");
-        record(stdE, new Equipment[]{blueEq, lizardEq}, "2020-09-11");
-        record(stdH, new Equipment[]{catEq}, "2020-09-14");
-        record(stdA, new Equipment[]{redEq, orangeEq}, "2020-09-15");
-        record(stdB, new Equipment[]{beefEq, rabbitEq, whiteEq}, "2020-09-16");
-        record(stdG, new Equipment[]{blueEq}, "2020-09-19");
-        record(stdD, new Equipment[]{porkEq, greenEq}, "2020-09-20");
-        record(stdB, new Equipment[]{hamEq, redEq}, "2020-09-20");
-        record(stdH, new Equipment[]{yellowEq, snakeEq}, "2020-09-20");
-        record(stdA, new Equipment[]{catEq, dogEq}, "2020-09-21");
-        record(stdI, new Equipment[]{rabbitEq}, "2020-09-21");
-        record(stdD, new Equipment[]{redEq}, "2020-09-22");
-        record(stdE, new Equipment[]{lizardEq}, "2020-09-23");
-        record(stdH, new Equipment[]{bearEq, snakeEq}, "2020-09-23");
-        record(stdA, new Equipment[]{orangeEq}, "2020-09-26");
-        record(stdE, new Equipment[]{rabbitEq, lizardEq}, "2020-09-26");
-        record(stdF, new Equipment[]{beefEq}, "2020-09-26");
-        record(stdI, new Equipment[]{porkEq, snakeEq}, "2020-09-27");
-        record(stdG, new Equipment[]{purpleEq, redEq}, "2020-09-28");
-        record(stdC, new Equipment[]{hamEq}, "2020-09-28");
-        record(stdG, new Equipment[]{redEq}, "2020-09-29");
-        record(stdB, new Equipment[]{fishEq, redEq}, "2020-09-30");
+        
+        record(stdA, new Equipment[]{redEq}, "2020-09-01", "2020-09-05");
+        record(stdD, new Equipment[]{purpleEq, dogEq}, "2020-09-02", "2020-09-06");
+        record(stdA, new Equipment[]{orangeEq, greenEq}, "2020-09-02", "2020-09-06");
+        record(stdD, new Equipment[]{yellowEq, catEq}, "2020-09-03", "2020-09-05");
+        record(stdC, new Equipment[]{blueEq, beefEq}, "2020-09-03", "2020-09-05");
+        record(stdF, new Equipment[]{pinkEq, rabbitEq, porkEq}, "2020-09-04", "2020-09-10");
+        record(stdI, new Equipment[]{blackEq, whiteEq}, "2020-09-04", "2020-09-08");
+        record(stdH, new Equipment[]{catEq}, "2020-09-06", "2020-09-08");
+        record(stdE, new Equipment[]{redEq}, "2020-09-06", "2020-09-12");
+        record(stdG, new Equipment[]{blueEq, beefEq}, "2020-09-06", "2020-09-10");
+        record(stdA, new Equipment[]{greenEq, hamEq}, "2020-09-06", "2020-09-09");
+        record(stdD, new Equipment[]{purpleEq, dogEq}, "2020-09-06", "2020-09-12");
+        record(stdC, new Equipment[]{blackEq, whiteEq}, "2020-09-09", "2020-09-13");
+        record(stdH, new Equipment[]{hamEq}, "2020-09-09", "2020-09-14");
+        record(stdG, new Equipment[]{yellowEq, catEq}, "2020-09-09", "2020-09-15");
+        record(stdF, new Equipment[]{snakeEq, bearEq}, "2020-09-10", "2020-09-14");
+        record(stdB, new Equipment[]{purpleEq, dogEq}, "2020-09-12", "2020-09-14");
+        record(stdH, new Equipment[]{redEq}, "2020-09-14", "2020-09-18");
+        record(stdJ, new Equipment[]{orangeEq, greenEq}, "2020-09-14", "2020-09-18");
+        record(stdJ, new Equipment[]{whiteEq}, "2020-09-15", "2020-09-18");
+        record(stdA, new Equipment[]{snakeEq, bearEq}, "2020-09-15", "2020-09-20");
+        record(stdF, new Equipment[]{redEq}, "2020-09-20", "2020-09-24");
+        record(stdC, new Equipment[]{orangeEq, greenEq}, "2020-09-20", "2020-09-22");
+        record(stdF, new Equipment[]{blueEq, beefEq}, "2020-09-21", "2020-09-24");
+        record(stdB, new Equipment[]{pinkEq, rabbitEq, porkEq}, "2020-09-22", "2020-09-25");
+        record(stdG, new Equipment[]{bearEq}, "2020-09-23", "2020-09-25");
+        record(stdG, new Equipment[]{redEq}, "2020-09-25", "2020-09-30");
+        record(stdH, new Equipment[]{yellowEq, catEq}, "2020-09-25", "2020-09-28");
+        record(stdE, new Equipment[]{purpleEq, dogEq}, "2020-09-26", "2020-09-30");
+        record(stdJ, new Equipment[]{rabbitEq, porkEq}, "2020-09-26", "2020-09-28");
+        record(stdA, new Equipment[]{orangeEq, greenEq}, "2020-09-27", "2020-09-30");
+                
 
         ////////////////////////////////////////////////
 
@@ -115,16 +117,17 @@ public class InsertData {
         System.out.println("insert time in ms: " + (A2 - A1));
     }
 
-    public static void record(User std, Equipment[] list, String daccept) {
+    public static void record(User std, Equipment[] list, String daccept, String dreturn) {
         try {
             final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             Date da = sdf.parse(daccept);
-            Date dt = new Date(da.getTime());
-            Calendar c = Calendar.getInstance(); 
-            c.setTime(dt); 
-            c.add(Calendar.DATE, 7); // 1 week
-            dt = c.getTime();
+            Date dt = sdf.parse(dreturn);
+//            Date dt = new Date(da.getTime());
+//            Calendar c = Calendar.getInstance(); 
+//            c.setTime(dt); 
+//            c.add(Calendar.DATE, 7); // 1 week
+//            dt = c.getTime();
 
             BorrowRecord br = brdb.add(std.getId(), RequestStatus.CONFIRM);
 
