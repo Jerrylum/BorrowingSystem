@@ -3,6 +3,7 @@
 <%@page import="com.jerryio.borsys.enums.ListingStatus"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jerryio.borsys.bean.Equipment"%>
+<%@page import="com.jerryio.borsys.bean.BorrowItem"%>
 <%@page import="com.jerryio.borsys.factory.ObjectDBFactory"%>
 <%@include file="WEB-INF/auth-check.jsp"%>
 <%@taglib uri="/WEB-INF/tlds/a_tag_lib.tld" prefix="borsys" %>
@@ -52,9 +53,18 @@
                 <div class="row">
                     <div class="col">
                         <h3 class="mt-5">Discover</h3>
-
-                        <h3 class="lead mt-5 mb-3">View / Edit</h3>
                         <div style="max-width: 500px">
+                            <%
+                            for (BorrowItem item : ObjectDBFactory.getBorrowItemDB().getAllBorrowItems()) {
+                                if (item.getRecord().getUserId() == me.getId() && item.isOverdue()) {
+                                    out.print("<div class=\"alert alert-danger my-4\" role=\"alert\">Overdue loaned equipment</div>");
+                                    break;                                    
+                                }
+                            }
+                            
+                            %>
+                            
+                            
                             <%  for (Equipment e : db.getAllEquipments()) {
                                     if (e.getListing() == ListingStatus.ENABLE){
                             %>
