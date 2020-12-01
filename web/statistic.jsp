@@ -56,7 +56,7 @@
             <div class="container">
                 <h2 class="mt-5 mb-3">Statistic</h2>
                 <div class="mb-3">
-                    Calculate from <input id="from" type="date" value="2020-09-01"/> to <input id="to" type="date" value="2020-10-01"/><br/>
+                    Calculate from <input id="from" type="date" value="2020-11-01"/> to <input id="to" type="date" value="2020-12-01"/><br/>
                     <button class="btn btn-sm btn-primary btn-inline" id="submit">Submit</button>
                 </div>
                 <div style="max-width: 900px">
