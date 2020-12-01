@@ -1,3 +1,4 @@
+<%@page import="com.jerryio.borsys.enums.BorrowType"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.jerryio.borsys.db.BorrowItemDB"%>
@@ -48,9 +49,10 @@
                         Date now = new Date();
                         
                         for (BorrowItem item : list) {
-                            %>
-                            <borsys:borrowitem-box item="<%= item %>"/>
+                            if (item.getStatus() != BorrowType.ASKED) {%>
+                                <borsys:borrowitem-box item="<%= item %>"/>
                         <%
+                            }
                         } %>
                     
                 </div>
